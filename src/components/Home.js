@@ -5,7 +5,14 @@ import seta from "../assets/img/seta-dropdown.png";
 
 export default function Home(props) {
   const [selected, setSelected] = useState(false);
-  const {decks, changeState} = props;
+  const {decks, startApp} = props;
+
+  function eventHandler(e) {
+    const form = e.target.form;
+    e.preventDefault();
+    const isValid = form.checkValidity();
+    if (isValid) startApp(form["decks"].value, form["zaps"].value);
+  }
 
   return (
     <Style>
@@ -20,7 +27,7 @@ export default function Home(props) {
         {selected &&
           <input type="number" name="zaps" id="zaps" placeholder="Digite sua meta de zaps..." min={0} max={decks[selected.value].cards.length} required/>
         }
-        <button onClick={changeState}>Iniciar Recall!</button>
+        <button onClick={eventHandler}>Iniciar Recall!</button>
       </form>
     </Style>
   );

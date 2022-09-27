@@ -14,22 +14,23 @@ createDeck("React",
   {front: "Usamos estado (state) para __", back: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente"}
 )
 
+let deck, zaps;
+
 // REACT
 export default function App() {
   // States
   const [currentState, setCurrentState] = useState("home");
 
   // Functions
-  function startRecall(e) {
-    e.preventDefault();
-    const isValid = e.target.form.checkValidity();
-    if (isValid) setCurrentState("deck");
+  function startApp(deckIndex, zapsGoal) {
+    [deck, zaps] = [deckIndex, zapsGoal];
+    setCurrentState("wat");
   }
 
   // Return JSX
   return (
     <div>
-      {currentState === "home" && <Home decks={decks} changeState={startRecall}/>}
+      {currentState === "home" && <Home decks={decks} startApp={startApp}/>}
     </div>
   );
 }
