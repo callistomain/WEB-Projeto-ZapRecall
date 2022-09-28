@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Home from "./Home";
+import Session from './Session';
 
 // JS
 const decks = [];
@@ -24,14 +25,15 @@ export default function App() {
   // Functions
   function startApp(deckIndex, zapsGoal) {
     [deck, zaps] = [deckIndex, zapsGoal];
-    setCurrentState("wat");
+    setCurrentState("session");
   }
 
   // Return JSX
   return (
-    <div>
+    <>
       {currentState === "home" && <Home decks={decks} startApp={startApp}/>}
-    </div>
+      {currentState === "session" && <Session deck={decks[deck].cards} zaps={zaps}/>}
+    </>
   );
 }
 
