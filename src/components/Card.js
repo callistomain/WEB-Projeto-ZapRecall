@@ -20,7 +20,7 @@ export default function Card(props) {
 
   if (!props.isSelected) {
     return (
-      <Flashcard onClick={(e) => {props.setSelected(props.index); e.target.scrollIntoView()}} className={answer}>
+      <Flashcard onClick={() => props.setSelected(props.index)} className={answer}>
           <div>Pergunta {props.index + 1}</div>
           <img src={icon} alt="" className={answer}/>
       </Flashcard>
@@ -95,7 +95,6 @@ const Flashcard = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   font-size: 16px;
   font-weight: bold;
-  scroll-margin-top: 180px;
 
   img {
     width: 23px;
