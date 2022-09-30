@@ -20,14 +20,14 @@ export default function Home(props) {
       <h1>ZapRecall</h1>
 
       <form>
-        <select name="decks" id="decks" onChange={(e) => setSelected(e.target.options[e.target.selectedIndex])} defaultValue="" required>
+        <select data-identifier="deck-selector" name="decks" id="decks" onChange={(e) => setSelected(e.target.options[e.target.selectedIndex])} defaultValue="" required>
           <option value="" disabled hidden>Escolha seu deck</option>
-          {decks.map((e, i) => <option key={i} value={i}>{e.name} [{e.cards.length}]</option>)}
+          {decks.map((e, i) => <option data-identifier="deck-option" key={i} value={i}>{e.name} [{e.cards.length}]</option>)}
         </select>
         {selected &&
-          <input type="number" name="zaps" id="zaps" placeholder="Digite sua meta de zaps..." min={0} max={decks[selected.value].cards.length} required/>
+          <input data-identifier="goals-input" type="number" name="zaps" id="zaps" placeholder="Digite sua meta de zaps..." min={0} max={decks[selected.value].cards.length} required/>
         }
-        <button onClick={eventHandler}>Iniciar Recall!</button>
+        <button onClick={eventHandler} data-identifier="start-btn">Iniciar Recall!</button>
       </form>
     </Style>
   );

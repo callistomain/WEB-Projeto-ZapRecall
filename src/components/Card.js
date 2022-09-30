@@ -20,17 +20,23 @@ export default function Card(props) {
 
   if (!props.isSelected) {
     return (
-      <Flashcard onClick={() => props.setSelected(props.index)} className={answer}>
-          <div>Pergunta {props.index + 1}</div>
-          <img src={icon} alt="" className={answer}/>
+      <Flashcard onClick={() => props.setSelected(props.index)} className={answer} data-identifier="flashcard">
+          <div data-identifier="flashcard-index-item">Pergunta {props.index + 1}</div>
+          {icon === playImg
+            ? <img src={icon} alt="" className={answer} data-identifier="flashcard-show-btn"/>
+            : <img src={icon} alt="" className={answer} data-identifier="flashcard-status"/>
+          }
       </Flashcard>
     );
   } else {
     return (
-      <Open>
-          <div className="text">{side ? props.front : props.back}</div>
+      <Open data-identifier="flashcard">
+          {side
+            ? <div className="text" data-identifier="flashcard-question">{props.front}</div>
+            : <div className="text" data-identifier="flashcard-answer">{props.back}</div>
+          }
           {side || answer
-            ? <img onClick={() => setSide(!side)} src={turnImg} alt="" />
+            ? <img onClick={() => setSide(!side)} src={turnImg} alt="" data-identifier="flashcard-turn-btn"/>
             : <Buttons answerDeselect={answerDeselect}/>
           }
       </Open>
@@ -41,9 +47,9 @@ export default function Card(props) {
 function Buttons({answerDeselect}) {
   return (
     <StyledButtons>
-      <div className="erro" onClick={() => answerDeselect("erro", wrongImg)}>Não lembrei</div>
-      <div className="duvida" onClick={() => answerDeselect("duvida", doubtImg)}>Quase não lembrei</div>
-      <div className="acerto" onClick={() => answerDeselect("acerto", rightImg)}>Zap!</div>
+      <div data-identifier="forgot-btn" className="erro" onClick={() => answerDeselect("erro", wrongImg)}>Não lembrei</div>
+      <div data-identifier="almost-forgot-btn" className="duvida" onClick={() => answerDeselect("duvida", doubtImg)}>Quase não lembrei</div>
+      <div data-identifier="zap-btn" className="acerto" onClick={() => answerDeselect("acerto", rightImg)}>Zap!</div>
     </StyledButtons>
   );
 }

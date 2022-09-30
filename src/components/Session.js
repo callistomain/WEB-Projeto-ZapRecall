@@ -29,7 +29,7 @@ export default function Session({deck, zaps}) {
         {deck.map((e, i) => <Card setSelected={setSelected} addAnswer={addAnswer} key={i} index={i} front={e.front} back={e.back} isSelected={selected === i}/>)}
       </main>
       <footer>
-        <div className="count">
+        <div className="count" data-identifier="flashcard-counter">
           {count !== deck.length
             ? `${count}/${deck.length} CONCLUÍDOS`
             : (hits >= zaps) ? <div>Parabéns! <img src={partyImg} alt="" /> ({hits}/{zaps})</div> : <div>Putz <img src={sadImg} alt="" /> ({hits}/{zaps})</div>
